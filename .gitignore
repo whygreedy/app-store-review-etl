@@ -5,8 +5,8 @@ outputs/
 .log
 
 # credentials
-credentials.json
-token.json
+credentials_gspread.json
+authorized_user.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
