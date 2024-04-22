@@ -1,9 +1,10 @@
 from app_store_review_etl.pipeline.pipeline import Pipeline
 from app_store_review_etl.pipeline.steps.preflight import Preflight
 from app_store_review_etl.pipeline.steps.fetch_app_reviews import FetchAppReviews
+from app_store_review_etl.pipeline.steps.sentiment_analysis import SentimentAnalysis
 
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-SPREADSHEET_ID = ''
+SPREADSHEET_ID = '1-e1XpKnitduF7YgHjHb-8EEOmlQ72ihOyFvkWrJvShk'
 RANGE_WORKSHEET = 'Sheet1'
 APP_COUNTRY = 'us'
 APP_NAME = 'canva-design-art-ai-editor'
@@ -22,6 +23,7 @@ def main():
     steps = [
                 Preflight,
                 FetchAppReviews,
+                SentimentAnalysis,
             ]
 
     p = Pipeline(steps)
