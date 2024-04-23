@@ -4,7 +4,7 @@ from app_store_review_etl.pipeline.steps.fetch_app_reviews import FetchAppReview
 from app_store_review_etl.pipeline.steps.sentiment_analysis import SentimentAnalysis
 
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-SPREADSHEET_ID = '1-e1XpKnitduF7YgHjHb-8EEOmlQ72ihOyFvkWrJvShk'
+SPREADSHEET_ID = ''
 RANGE_WORKSHEET = 'Sheet1'
 APP_COUNTRY = 'us'
 APP_NAME = 'canva-design-art-ai-editor'
