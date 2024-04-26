@@ -2,6 +2,7 @@ from app_store_review_etl.pipeline.pipeline import Pipeline
 from app_store_review_etl.pipeline.steps.preflight import Preflight
 from app_store_review_etl.pipeline.steps.fetch_app_reviews import FetchAppReviews
 from app_store_review_etl.pipeline.steps.sentiment_analysis import SentimentAnalysis
+from app_store_review_etl.pipeline.steps.top_likes_dislikes_analysis import TopLikesDislikesAnalysis
 
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 SPREADSHEET_ID = ''
@@ -22,8 +23,9 @@ def main():
 
     steps = [
                 Preflight,
-                FetchAppReviews,
-                SentimentAnalysis,
+                # FetchAppReviews,
+                # SentimentAnalysis,
+                TopLikesDislikesAnalysis,
             ]
 
     p = Pipeline(steps)
