@@ -32,6 +32,8 @@ class SentimentAnalysis(Step):
             data.append([str(compound_score), str(sentiment), str(sentiment_emoji)])
 
         worksheet.update('E:G', data)
+        worksheet.freeze(rows=1)
+        worksheet.sort((1, 'des'))
 
     def classify_sentiment(self, compound_score):
         if compound_score >= 0.05:

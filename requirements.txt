@@ -4,14 +4,14 @@ cachetools==5.3.3
 certifi==2024.2.2
 chardet==3.0.4
 google-ai-generativelanguage==0.6.2
-google-api-core==2.18.0
+google-api-core==2.19.0
 google-api-python-client==2.127.0
 google-auth==2.29.0
 google-auth-httplib2==0.2.0
 google-auth-oauthlib==1.2.0
 google-generativeai==0.5.2
 googleapis-common-protos==1.63.0
-grpcio==1.62.2
+grpcio==1.63.0
 grpcio-status==1.62.2
 gspread==6.1.0
 httplib2==0.22.0

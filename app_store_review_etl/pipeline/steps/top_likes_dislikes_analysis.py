@@ -11,13 +11,28 @@ class TopLikesDislikesAnalysis(Step):
         reviews = self.read_reviews(inputs)
         genai.configure(api_key=GEMINI_API_KEY)
         model = genai.GenerativeModel('gemini-1.0-pro-latest')
+
+        final_reviews = []
+        sum_tokens = 0
+        count_reviews = 0
+        for review in reviews:
+            review_tokens = model.count_tokens(review).total_tokens
+            sum_tokens += (review_tokens + 2)
+            if sum_tokens < 28000:
+                count_reviews += 1
+                print('sum_tokens: ', sum_tokens, 'count_reviews: ', count_reviews)
+                final_reviews.append(review)
+            else:
+                break
+
         prompt = 'Given the following app reviews list, please generate ' \
                  'two numbered lists of the top ten things people ' \
                  'like or dislike about the app, listed from the most ' \
-                 'prominent to the least prominent:\n' + str(reviews)
+                 'prominent to the least prominent:\n' + str(final_reviews)
 
-        print(model.count_tokens(prompt))
         print('prompt:', prompt)
+        print(model.count_tokens(prompt))
+
         try:
             response = model.generate_content(
                 contents=[prompt]
@@ -49,7 +64,7 @@ class TopLikesDislikesAnalysis(Step):
 
         reviews = []
 
-        for review in worksheet.get('C2:C192'):
+        for review in worksheet.get('C2:C'):
             reviews.append(review[0])
         return reviews
 

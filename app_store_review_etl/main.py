@@ -8,7 +8,7 @@ SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 SPREADSHEET_ID = ''
 RANGE_WORKSHEET = 'Sheet1'
 APP_COUNTRY = 'us'
-APP_NAME = 'canva-design-art-ai-editor'
+APP_NAME = 'figma'
 
 
 def main():
@@ -23,8 +23,8 @@ def main():
 
     steps = [
                 Preflight,
-                # FetchAppReviews,
-                # SentimentAnalysis,
+                FetchAppReviews,
+                SentimentAnalysis,
                 TopLikesDislikesAnalysis,
             ]
 
