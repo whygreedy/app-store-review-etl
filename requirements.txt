@@ -29,7 +29,7 @@ requests==2.23.0
 requests-oauthlib==2.0.0
 rsa==4.9
 StrEnum==0.4.15
-tqdm==4.66.2
+tqdm==4.66.4
 typing_extensions==4.11.0
 uritemplate==4.1.1
 urllib3==1.25.11

@@ -7,7 +7,7 @@ class Step(ABC):
         pass
 
     @abstractmethod
-    def process(self, token, inputs):
+    def process(self, gspread_client, inputs):
         pass
 
 

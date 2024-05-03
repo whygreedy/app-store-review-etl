@@ -5,11 +5,10 @@ class Pipeline:
     def __init__(self, steps):
         self.steps = steps
 
-    def run(self, inputs):
-        token = None
+    def run(self, gspread_client, inputs):
         for step in self.steps:
             try:
-                step().process(token, inputs)
+                step().process(gspread_client, inputs)
             except StepException as e:
                 print(e)
                 break

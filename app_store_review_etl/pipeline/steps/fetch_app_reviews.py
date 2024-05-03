@@ -1,23 +1,15 @@
-import gspread
 from app_store_scraper import AppStore
 
 from app_store_review_etl.pipeline.steps.step import Step
-from app_store_review_etl.settings import CREDENTIALS_GSPREAD_FILE_PATH
 
 
 class FetchAppReviews(Step):
-    def process(self, token, inputs):
-        scopes = inputs['scopes']
+    def process(self, gspread_client, inputs):
+
         spreadsheet_id = inputs['spreadsheet_id']
         range_worksheet = inputs['range_worksheet']
 
-        gc = gspread.oauth(
-            credentials_filename=CREDENTIALS_GSPREAD_FILE_PATH,
-            authorized_user_filename='../authorized_user.json',
-            scopes=scopes,
-        )
-
-        spreadsheet = gc.open_by_key(spreadsheet_id)
+        spreadsheet = gspread_client.open_by_key(spreadsheet_id)
         worksheet = spreadsheet.worksheet(range_worksheet)
         worksheet.clear()
 
