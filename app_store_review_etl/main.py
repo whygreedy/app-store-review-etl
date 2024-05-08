@@ -4,11 +4,13 @@ from app_store_review_etl.pipeline.steps.preflight import Preflight
 from app_store_review_etl.pipeline.steps.fetch_app_reviews import FetchAppReviews
 from app_store_review_etl.pipeline.steps.sentiment_analysis import SentimentAnalysis
 from app_store_review_etl.pipeline.steps.top_likes_dislikes_analysis import TopLikesDislikesAnalysis
+from app_store_review_etl.pipeline.steps.data_graph import DataGraph
+from app_store_review_etl.pipeline.steps.update_graph import UpdateGraph
 
 SPREADSHEET_ID = ''
 RANGE_WORKSHEET = 'Sheet1'
 APP_COUNTRY = 'us'
-APP_NAME = 'toilet-finder'
+APP_NAME = 'figma'
 
 
 def main():
@@ -25,6 +27,8 @@ def main():
                 FetchAppReviews,
                 SentimentAnalysis,
                 TopLikesDislikesAnalysis,
+                DataGraph,
+                UpdateGraph,
             ]
 
     gspread_client = GoogleSheetsAuth.google_sheets_auth()

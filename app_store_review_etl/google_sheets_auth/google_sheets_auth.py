@@ -6,7 +6,8 @@ from app_store_review_etl.settings import CREDENTIALS_GSPREAD_FILE_PATH
 class GoogleSheetsAuth:
     @staticmethod
     def google_sheets_auth():
-        scopes = ['https://www.googleapis.com/auth/spreadsheets']
+        scopes = ['https://www.googleapis.com/auth/spreadsheets',
+                  'https://www.googleapis.com/auth/drive']
 
         gc = gspread.oauth(
             credentials_filename=CREDENTIALS_GSPREAD_FILE_PATH,
