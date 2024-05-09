@@ -4,13 +4,14 @@ from app_store_review_etl.pipeline.steps.preflight import Preflight
 from app_store_review_etl.pipeline.steps.fetch_app_reviews import FetchAppReviews
 from app_store_review_etl.pipeline.steps.sentiment_analysis import SentimentAnalysis
 from app_store_review_etl.pipeline.steps.top_likes_dislikes_analysis import TopLikesDislikesAnalysis
-from app_store_review_etl.pipeline.steps.data_graph import DataGraph
+from app_store_review_etl.pipeline.steps.word_cloud_graph import WordCloudGraph
 from app_store_review_etl.pipeline.steps.update_graph import UpdateGraph
+from app_store_review_etl.pipeline.steps.graph import Graph
 
 SPREADSHEET_ID = ''
 RANGE_WORKSHEET = 'Sheet1'
 APP_COUNTRY = 'us'
-APP_NAME = 'figma'
+APP_NAME = 'canva-design-art-ai-editor'
 
 
 def main():
@@ -27,7 +28,8 @@ def main():
                 FetchAppReviews,
                 SentimentAnalysis,
                 TopLikesDislikesAnalysis,
-                DataGraph,
+                WordCloudGraph,
+                Graph,
                 UpdateGraph,
             ]
 
