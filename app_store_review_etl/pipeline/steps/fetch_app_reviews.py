@@ -4,32 +4,29 @@ from app_store_review_etl.pipeline.steps.step import Step
 
 
 class FetchAppReviews(Step):
-    def process(self, gspread_client, inputs):
+    def process(self, gspread_client, spreadsheet, inputs):
 
-        spreadsheet_id = inputs['spreadsheet_id']
-        range_worksheet = inputs['range_worksheet']
-
-        spreadsheet = gspread_client.open_by_key(spreadsheet_id)
-        worksheet = spreadsheet.worksheet(range_worksheet)
-        worksheet.clear()
-
-        value_data = self.fetch_app_reviews(inputs)
-        worksheet.update('A1', value_data)
-
-    def fetch_app_reviews(self, inputs):
         app_country = inputs['app_country']
         app_name = inputs['app_name']
-        flush_toilet_finder = AppStore(country=app_country, app_name=app_name)
-        flush_toilet_finder.review()
 
-        header = ['Date', 'Rating', 'Review', 'UserName']
-        data = [header]
-        reviews = []
+        try:
+            target_app = AppStore(country=app_country, app_name=app_name)
+            target_app.review()
 
-        for review in flush_toilet_finder.reviews:
-            reviews.append(review)
+            header = ['Date', 'Rating', 'Review', 'UserName']
+            data = [header]
+            reviews = []
 
-        for review in reviews:
-            data.append([str(review['date']), str(review['rating']), review['review'], review['userName']])
+            for review in target_app.reviews:
+                reviews.append(review)
 
-        return data
+            for review in reviews:
+                data.append([str(review['date']), str(review['rating']), review['review'], review['userName']])
+
+            title_worksheet = 'reviews'
+            spreadsheet.add_worksheet(title=title_worksheet, rows=1000, cols=10)
+            worksheet = spreadsheet.worksheet(title_worksheet)
+            worksheet.update('A1', data)
+
+        except Exception as e:
+            print(f'{type(e).__name__}: {e}')

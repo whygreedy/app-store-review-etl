@@ -1,4 +1,5 @@
 import os
+
 import matplotlib.pyplot as plt
 
 from app_store_review_etl.pipeline.steps.step import Step
@@ -6,8 +7,28 @@ from app_store_review_etl.settings import OUTPUTS_DIR
 
 
 class Graph(Step):
-    def process(self, gspread_client, inputs):
-        data = self.read_data(gspread_client, inputs)
+    def process(self, gspread_client, spreadsheet, inputs):
+
+        # read data from Sheet1 and store data in a dictionary
+        worksheet = spreadsheet.worksheet('reviews')
+
+        ratings = []
+        for rating in worksheet.get('B2:B'):
+            ratings.append(str(rating[0]))
+
+        polarity_scores = []
+        for polarity in worksheet.get('E2:E'):
+            polarity_scores.append(str(polarity[0]))
+
+        sentiments = []
+        for sentiment in worksheet.get('F2:F'):
+            sentiments.append(str(sentiment[0]))
+
+        data = {
+            'ratings': ratings,
+            'polarity_scores': polarity_scores,
+            'sentiments': sentiments
+        }
 
         # plot distribution of sentiment
         sentiments_data = {
@@ -52,30 +73,3 @@ class Graph(Step):
         ax.set_ylabel('Rating')
         output_filepath = os.path.join(OUTPUTS_DIR, 'rating.png')
         plt.savefig(output_filepath, dpi=500)
-
-    def read_data(self, gspread_client, inputs):
-        spreadsheet_id = inputs['spreadsheet_id']
-        range_worksheet = inputs['range_worksheet']
-
-        spreadsheet = gspread_client.open_by_key(spreadsheet_id)
-        worksheet = spreadsheet.worksheet(range_worksheet)
-
-        ratings = []
-        for rating in worksheet.get('B2:B'):
-            ratings.append(str(rating[0]))
-
-        polarity_scores = []
-        for polarity in worksheet.get('E2:E'):
-            polarity_scores.append(str(polarity[0]))
-
-        sentiments = []
-        for sentiment in worksheet.get('F2:F'):
-            sentiments.append(str(sentiment[0]))
-
-        data = {
-            'ratings': ratings,
-            'polarity_scores': polarity_scores,
-            'sentiments': sentiments
-        }
-
-        return data

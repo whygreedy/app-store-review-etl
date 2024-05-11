@@ -5,10 +5,11 @@ class Pipeline:
     def __init__(self, steps):
         self.steps = steps
 
-    def run(self, gspread_client, inputs):
+    def run(self, gspread_client, spreadsheet, inputs):
         for step in self.steps:
+            step_instance = step()
             try:
-                step().process(gspread_client, inputs)
+                step_instance.process(gspread_client, spreadsheet, inputs)
             except StepException as e:
                 print(e)
                 break
