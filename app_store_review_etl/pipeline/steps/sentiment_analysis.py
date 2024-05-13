@@ -1,10 +1,12 @@
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 from app_store_review_etl.pipeline.steps.step import Step
+from app_store_review_etl.logger import logger
 
 
 class SentimentAnalysis(Step):
     def process(self, gspread_client, spreadsheet, inputs):
+        logger.info('ANALYZING SENTIMENT...')
 
         worksheet = spreadsheet.worksheet('reviews')
 
@@ -25,7 +27,9 @@ class SentimentAnalysis(Step):
             worksheet.sort((1, 'des'))
 
         except Exception as e:
-            print(f'{type(e).__name__}: {e}')
+            logger.debug(f'{type(e).__name__}: {e}')
+
+        logger.info('COMPLETED ANALYZING SENTIMENT.')
 
     def classify_sentiment(self, compound_score):
         if compound_score >= 0.05:

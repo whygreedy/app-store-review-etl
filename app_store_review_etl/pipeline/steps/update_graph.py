@@ -6,10 +6,13 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 
 from app_store_review_etl.pipeline.steps.step import Step
+from app_store_review_etl.logger import logger
 
 
 class UpdateGraph(Step):
     def process(self, gspread_client, spreadsheet, inputs):
+        logger.info('UPDATING GRAPHS INTO GOOGLE SHEET...')
+
         credentials = Credentials.from_authorized_user_file('../authorized_user.json')
         drive_service = build('drive', 'v3', credentials=credentials)
 
@@ -29,7 +32,7 @@ class UpdateGraph(Step):
                 }
                 drive_service.permissions().create(fileId=uploaded_image['id'], body=permission).execute()
                 image_url = f'https://drive.google.com/uc?export=view&id={uploaded_image["id"]}'
-                print("Uploaded image URL:", image_url)
+                logger.info(f'uploaded image URL: {image_url}')
 
                 res = worksheet3.append_row([file_name, '=IMAGE(\"{}\")'.format(image_url)],
                                             value_input_option='USER_ENTERED')
@@ -68,4 +71,6 @@ class UpdateGraph(Step):
                 spreadsheet.batch_update({"requests": requests})
 
             except Exception as e:
-                print(f'{type(e).__name__}: {e}')
+                logger.debug(f'{type(e).__name__}: {e}')
+
+        logger.info('COMPLETED UPDATING GRAPHS INTO GOOGLE SHEET.')

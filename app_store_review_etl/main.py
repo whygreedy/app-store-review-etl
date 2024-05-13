@@ -10,7 +10,7 @@ from app_store_review_etl.pipeline.steps.update_graph import UpdateGraph
 from app_store_review_etl.pipeline.steps.postflight import Postflight
 
 
-SPREADSHEET_NAME = 'figma_app_review_analysis'
+SPREADSHEET_NAME = 'final-cut-pro_app_review_analysis'
 APP_COUNTRY = 'us'
 APP_NAME = 'figma'
 

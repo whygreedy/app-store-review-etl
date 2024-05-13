@@ -1,10 +1,12 @@
 from app_store_scraper import AppStore
 
 from app_store_review_etl.pipeline.steps.step import Step
+from app_store_review_etl.logger import logger
 
 
 class FetchAppReviews(Step):
     def process(self, gspread_client, spreadsheet, inputs):
+        logger.info('FETCHING APP REVIEWS...')
 
         app_country = inputs['app_country']
         app_name = inputs['app_name']
@@ -29,4 +31,6 @@ class FetchAppReviews(Step):
             worksheet.update('A1', data)
 
         except Exception as e:
-            print(f'{type(e).__name__}: {e}')
+            logger.debug(f'{type(e).__name__}: {e}')
+
+        logger.info('COMPLETED FETCHING APP REVIEWS.')

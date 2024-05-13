@@ -2,10 +2,12 @@ import google.generativeai as genai
 
 from app_store_review_etl.pipeline.steps.step import Step
 from app_store_review_etl.settings import GEMINI_API_KEY
+from app_store_review_etl.logger import logger
 
 
 class TopLikesDislikesAnalysis(Step):
     def process(self, gspread_client, spreadsheet, inputs):
+        logger.info('ANALYZING TOP LIKES/DISLIKES FEATURES BY GEMINI MODEL...')
 
         # google gemini ai model config
         genai.configure(api_key=GEMINI_API_KEY)
@@ -22,7 +24,7 @@ class TopLikesDislikesAnalysis(Step):
                 sum_tokens += (review_tokens + 2)
                 if sum_tokens < 28000:
                     count_reviews += 1
-                    print('sum_tokens: ', sum_tokens, 'count_reviews: ', count_reviews)
+                    logger.info(f'sum_tokens: {sum_tokens}, count_reviews: {count_reviews}')
                     final_reviews.append(review[0])
                 else:
                     break
@@ -32,19 +34,15 @@ class TopLikesDislikesAnalysis(Step):
                      'like or dislike about the app, listed from the most ' \
                      'prominent to the least prominent:\n' + str(final_reviews)
 
-            print('prompt:', prompt)
-            print(model.count_tokens(prompt))
+            logger.info(f'prompt: {prompt}')
+            logger.info(f'{model.count_tokens(prompt)}')
 
-        except Exception as e:
-            print(f'{type(e).__name__}: {e}')
-
-        # get response and update response to google sheet
-        try:
+            # get response and update response to google sheet
             response = model.generate_content(
                 contents=[prompt]
             )
             output_text = response.text
-            print(output_text)
+            logger.info(f'response : {output_text}')
             output_data = []
             output_text_list = output_text.strip().split('\n')
             for output_text in output_text_list:
@@ -56,4 +54,6 @@ class TopLikesDislikesAnalysis(Step):
             worksheet2.update('A1', output_data)
 
         except Exception as e:
-            print(f'{type(e).__name__}: {e}')
+            logger.debug(f'{type(e).__name__}: {e}')
+
+        logger.info('COMPLETED ANALYZING TOP LIKES/DISLIKES FEATURES.')
