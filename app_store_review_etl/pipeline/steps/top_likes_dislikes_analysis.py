@@ -42,7 +42,7 @@ class TopLikesDislikesAnalysis(Step):
                 contents=[prompt]
             )
             output_text = response.text
-            logger.info(f'response : {output_text}')
+            logger.info(f'{output_text}')
             output_data = []
             output_text_list = output_text.strip().split('\n')
             for output_text in output_text_list:
@@ -54,6 +54,6 @@ class TopLikesDislikesAnalysis(Step):
             worksheet2.update('A1', output_data)
 
         except Exception as e:
-            logger.debug(f'{type(e).__name__}: {e}')
+            logger.info(f'{type(e).__name__}: {e}')
 
         logger.info('COMPLETED ANALYZING TOP LIKES/DISLIKES FEATURES.')

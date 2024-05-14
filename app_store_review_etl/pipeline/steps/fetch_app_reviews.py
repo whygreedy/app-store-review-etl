@@ -31,6 +31,6 @@ class FetchAppReviews(Step):
             worksheet.update('A1', data)
 
         except Exception as e:
-            logger.debug(f'{type(e).__name__}: {e}')
+            logger.info(f'{type(e).__name__}: {e}')
 
         logger.info('COMPLETED FETCHING APP REVIEWS.')
