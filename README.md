@@ -29,10 +29,13 @@ Besides, I chose Google Sheet as a database for flexibility and scalability, the
 
 ## Example & Result
 
-Output Google Sheet Demo Link : https://docs.google.com/spreadsheets/d/1PmNL5x--T3FMa6AkZWQ7HU-2ILKYr_emZ38ueqplkzc/edit?usp=sharing
+Output Google Sheet Demo Link : https://docs.google.com/spreadsheets/d/1fp0-D0fspQ4W8nTSor8Oa_WFtEG1kD31JLGzABUJGdo/edit?usp=sharing
 
-Screenshots of the output Google Sheet that provides app reviews analysis from app [Canva: Design, Art & AI Editor](https://apps.apple.com/us/app/canva-design-art-ai-editor/id897446215).
+Screenshots of the output Google Sheet that provides app reviews analysis from app [YouTube: Watch, Listen, Stream](https://apps.apple.com/us/app/youtube-watch-listen-stream/id544007664).
 ![resultImage1](https://raw.githubusercontent.com/whygreedy/app-store-review-etl/main/images/result_p1.png)
+
 ![resultImage2](https://raw.githubusercontent.com/whygreedy/app-store-review-etl/main/images/result_p2.png)
+
 ![resultImage3](https://raw.githubusercontent.com/whygreedy/app-store-review-etl/main/images/result_p3.png)
+
 ![resultImage4](https://raw.githubusercontent.com/whygreedy/app-store-review-etl/main/images/result_p4.png)

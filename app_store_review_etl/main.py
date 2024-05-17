@@ -15,7 +15,7 @@ from app_store_review_etl.pipeline.steps.postflight import Postflight
 
 
 APP_COUNTRY = 'us'
-APP_NAME = 'canva-design-art-ai-editor'
+APP_NAME = 'youtube-watch-listen-stream'
 DATE_AFTER = '2024-1-1'
 AI_MODEL = 'gemini-1.0-pro-latest'
 
