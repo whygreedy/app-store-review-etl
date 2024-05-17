@@ -3,6 +3,7 @@ app-store-scraper==0.3.5
 cachetools==5.3.3
 certifi==2024.2.2
 chardet==3.0.4
+click==8.1.7
 contourpy==1.2.1
 cycler==0.12.1
 fonttools==4.51.0
@@ -20,8 +21,10 @@ gspread==6.1.0
 httplib2==0.22.0
 idna==2.10
 importlib_resources==6.4.0
+joblib==1.4.2
 kiwisolver==1.4.5
 matplotlib==3.8.4
+nltk==3.8.1
 numpy==1.26.4
 oauthlib==3.2.2
 packaging==24.0
@@ -35,6 +38,7 @@ pydantic_core==2.18.2
 pyparsing==3.1.2
 python-dateutil==2.9.0.post0
 python-dotenv==1.0.1
+regex==2024.5.15
 requests==2.23.0
 requests-oauthlib==2.0.0
 rsa==4.9

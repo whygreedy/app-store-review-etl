@@ -1,3 +1,4 @@
+import datetime
 from app_store_scraper import AppStore
 
 from app_store_review_etl.pipeline.steps.step import Step
@@ -10,10 +11,17 @@ class FetchAppReviews(Step):
 
         app_country = inputs['app_country']
         app_name = inputs['app_name']
+        date_after = inputs['date_after']
+
+        date_part = date_after.split('-')
+        year = int(date_part[0])
+        month = int(date_part[1])
+        day = int(date_part[2])
+        datatime = datetime.datetime(year, month, day)
 
         try:
             target_app = AppStore(country=app_country, app_name=app_name)
-            target_app.review()
+            target_app.review(after=datatime)
 
             header = ['Date', 'Rating', 'Review', 'UserName']
             data = [header]
