@@ -28,7 +28,6 @@ Besides, I chose Google Sheet as a database for flexibility and scalability, the
 - 🗂️ Get all the data and analysis in one place - Google Sheet
 
 ## Example & Result
-
 Output Google Sheet Demo Link : 
 https://docs.google.com/spreadsheets/d/1fp0-D0fspQ4W8nTSor8Oa_WFtEG1kD31JLGzABUJGdo/edit?usp=sharing
 
