@@ -29,9 +29,11 @@ Besides, I chose Google Sheet as a database for flexibility and scalability, the
 
 ## Example & Result
 
-Output Google Sheet Demo Link : https://docs.google.com/spreadsheets/d/1fp0-D0fspQ4W8nTSor8Oa_WFtEG1kD31JLGzABUJGdo/edit?usp=sharing
+Output Google Sheet Demo Link : 
+https://docs.google.com/spreadsheets/d/1fp0-D0fspQ4W8nTSor8Oa_WFtEG1kD31JLGzABUJGdo/edit?usp=sharing
 
-Screenshots of the output Google Sheet that provides app reviews analysis from app [YouTube: Watch, Listen, Stream](https://apps.apple.com/us/app/youtube-watch-listen-stream/id544007664).
+Screenshots of the output Google Sheet provide app reviews analysis from app [YouTube: Watch, Listen, Stream](https://apps.apple.com/us/app/youtube-watch-listen-stream/id544007664).
+
 ![resultImage1](https://raw.githubusercontent.com/whygreedy/app-store-review-etl/main/images/result_p1.png)
 
 ![resultImage2](https://raw.githubusercontent.com/whygreedy/app-store-review-etl/main/images/result_p2.png)
