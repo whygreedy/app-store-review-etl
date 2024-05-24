@@ -13,7 +13,7 @@ This app leverages Google Gemini AI model to summarize top liked and disliked fe
 Get your API keys 🔑 ready, then you could analyze app reviews 📊 easily.
 
 ## Description
-As a python programmer with product management and marketing work experience in the past, I am fascinated by automation tools ⚙️ that facilitate work efficiency 🚀 and drive better customer experience 😃.\
+As a python programmer with product management and marketing work experience in the past, I am fascinated by automation tools ⚙️ that facilitate work efficiency 🚀 and drive better customer experience 😃.
 
 In 2024, AI productivity tool is not a dream anymore. Both OpenAI and Google provide LLM models for developers to build AI products.
 
@@ -40,3 +40,77 @@ Screenshots of the output Google Sheet provide app reviews analysis from app [Yo
 ![resultImage3](https://raw.githubusercontent.com/whygreedy/app-store-review-etl/main/images/result_p3.png)
 
 ![resultImage4](https://raw.githubusercontent.com/whygreedy/app-store-review-etl/main/images/result_p4.png)
+
+## Quickstart
+
+### Using the command line interface
+1. Clone this repo from GitHub to your local directory
+    ```bash
+    git clone https://github.com/whygreedy/app-store-review-etl.git
+    ```
+2. Change directory to the repo folder just downloaded
+    ```bash
+    cd app-store-review-etl
+    ```
+3. Add `credentials_gspread.json` file that includes *your Google Drive API credential* to the repo folder
+
+4. Add `.env` file that includes *your Google Gemini API key* and *the filepath to Google Drive API credential* to the repo folder
+    ```
+    # your .env file
+    CREDENTIALS_GSPREAD_FILE_PATH='../credentials_gspread.json'
+    GEMINI_API_KEY=<your Gemini API Key>
+    ```
+5. Create venv
+    ```bash
+    virtualenv venv
+    ```
+6. Activate venv
+    ```bash
+    source venv/bin/activate
+    ```
+7. Change directory to the folder that includes main.py file
+    ```bash
+    cd app_store_review_etl
+    ```
+8. Execute main.py file
+    ```bash
+    python3 main.py -c <app_country> -n <app_name> -d <date_after> -m <ai_model>
+    ```
+    By default, we fetch YouTube app store reviews posted after 2024/1/1 
+    ,and using Gemini 1.0 pro model. You could adjust arguments at your needs.
+    
+    For example, you could fetch UberEats app store reviews posted after 2023/12/1 by the following command.
+    ```bash
+    python3 main.py -n uber-eats-food-delivery -d 2023-12-1
+    ```
+
+
+### Using app-store-review-etl in a Python script
+1. Create venv
+    ```bash
+    virtualenv venv
+    ```
+2. Activate venv
+    ```bash
+    source venv/bin/activate
+    ```
+3. Install from PyPI with pip
+    ```bash
+    pip install app-store-review-etl
+    ```
+4. Add `credentials_gspread.json` file that includes *your Google Drive API credential*
+
+5. Add `.env` file that includes *your Google Gemini API key* and *the filepath to Google Drive API credential*
+    ```
+    # your .env file
+    CREDENTIALS_GSPREAD_FILE_PATH='../credentials_gspread.json'
+    GEMINI_API_KEY=<your Gemini API Key>
+    ```
+   
+6. Import the package and execute it with a Python Script
+    ```python
+    # your Python script
+    from app_store_review_etl import main
+    
+    main.main()
+    ```
