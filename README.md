@@ -33,13 +33,7 @@ https://docs.google.com/spreadsheets/d/1fp0-D0fspQ4W8nTSor8Oa_WFtEG1kD31JLGzABUJ
 
 Screenshots of the output Google Sheet provide app reviews analysis from app [YouTube: Watch, Listen, Stream](https://apps.apple.com/us/app/youtube-watch-listen-stream/id544007664).
 
-![resultImage1](https://raw.githubusercontent.com/whygreedy/app-store-review-etl/main/images/result_p1.png)
-
-![resultImage2](https://raw.githubusercontent.com/whygreedy/app-store-review-etl/main/images/result_p2.png)
-
-![resultImage3](https://raw.githubusercontent.com/whygreedy/app-store-review-etl/main/images/result_p3.png)
-
-![resultImage4](https://raw.githubusercontent.com/whygreedy/app-store-review-etl/main/images/result_p4.png)
+![resultImage](https://raw.githubusercontent.com/whygreedy/app-store-review-etl/main/images/demo_output_result.png)
 
 ## Quickstart
 
@@ -52,27 +46,30 @@ Screenshots of the output Google Sheet provide app reviews analysis from app [Yo
     ```bash
     cd app-store-review-etl
     ```
-3. Add `credentials_gspread.json` file that includes *your Google Drive API credential* to the repo folder
+3. Create a new project on [Google Developers Console](https://console.developers.google.com/). 
+   Enable **Google Drive API** and **Google Sheets API**, and set up **OAuth consent screen**.
 
-4. Add `.env` file that includes *your Google Gemini API key* and *the filepath to Google Drive API credential* to the repo folder
+4. Add `credentials_gspread.json` file that includes your **OAuth Client Credential** to the repo folder
+
+5. Add `.env` file that includes your **[Google Gemini API key](https://ai.google.dev/gemini-api)** and **the filepath to OAuth Client Credential** to the repo folder
     ```
     # your .env file
     CREDENTIALS_GSPREAD_FILE_PATH='../credentials_gspread.json'
     GEMINI_API_KEY=<your Gemini API Key>
     ```
-5. Create venv
+6. Create venv
     ```bash
     virtualenv venv
     ```
-6. Activate venv
+7. Activate venv
     ```bash
     source venv/bin/activate
     ```
-7. Change directory to the folder that includes main.py file
+8. Change directory to the folder that includes main.py file
     ```bash
     cd app_store_review_etl
     ```
-8. Execute main.py file
+9. Execute main.py file
     ```bash
     python3 main.py -c <app_country> -n <app_name> -d <date_after> -m <ai_model>
     ```
@@ -98,16 +95,19 @@ Screenshots of the output Google Sheet provide app reviews analysis from app [Yo
     ```bash
     pip install app-store-review-etl
     ```
-4. Add `credentials_gspread.json` file that includes *your Google Drive API credential*
+4. Create a new project on [Google Developers Console](https://console.developers.google.com/). 
+   Enable **Google Drive API** and **Google Sheets API**, and set up **OAuth consent screen**.
 
-5. Add `.env` file that includes *your Google Gemini API key* and *the filepath to Google Drive API credential*
+5. Add `credentials_gspread.json` file that includes your **OAuth Client Credential** to the repo folder
+
+6. Add `.env` file that includes your **[Google Gemini API key](https://ai.google.dev/gemini-api)** and **the filepath to OAuth Client Credential** to the repo folder
     ```
     # your .env file
     CREDENTIALS_GSPREAD_FILE_PATH='../credentials_gspread.json'
     GEMINI_API_KEY=<your Gemini API Key>
     ```
    
-6. Import the package and execute it with a Python Script
+7. Import the package and execute it with a Python Script
     ```python
     # your Python script
     from app_store_review_etl import main
