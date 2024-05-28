@@ -18,11 +18,13 @@ URL = 'https://github.com/whygreedy/app-store-review-etl'
 EMAIL = 'cindyyeah9@gmail.com'
 AUTHOR = 'Cindy Yeh'
 REQUIRES_PYTHON = '>=3.9.0'
-VERSION = '0.1.0'
+VERSION = '0.1.1'
 
 # What packages are required for this module to be executed?
 REQUIRED = [
-    'app-store-scraper', 'gspread', 'vaderSentiment', 'google-generativeai', 'wordcloud', 'matplotlib', 'python-dotenv'
+    'app-store-scraper', 'gspread', 'vaderSentiment',
+    'google-generativeai', 'wordcloud', 'matplotlib',
+    'nltk', 'python-dotenv'
 ]
 
 # What packages are optional?
